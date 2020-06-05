@@ -1,0 +1,23 @@
+.new-entry {
+  height: 100%;
+  padding: 12px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+}
+
+.new-entry__types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border: 2px solid rgba(var(--primary-color-hover-rgb), 0.35);
+}
+
+.new-entry__types-legend {
+  padding: 0 4px;
+}
+
+.new-entry__type {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

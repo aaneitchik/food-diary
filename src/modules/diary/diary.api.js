@@ -7,6 +7,7 @@ import { diaryMock } from './diary.mock';
 
 const diaryApi = {
   getAll,
+  getEntryTypes,
 };
 
 export default diaryApi;
@@ -24,3 +25,20 @@ async function getAll() {
 //
 //   return querySnapshot.docs.map((doc) => doc.data());
 // }
+
+function getEntryTypes() {
+  return new Promise(resolve =>
+    setTimeout(() => {
+      resolve([
+        {
+          _id: 'EATING',
+          label: 'еда',
+        },
+        {
+          _id: 'NOTE',
+          label: 'пометка',
+        },
+      ]);
+    }, 500)
+  );
+}

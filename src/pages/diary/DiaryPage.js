@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import './DiaryPage.css';
 
-import diaryApi from './diary.api';
+import diaryApi from '../../modules/diary/diary.api';
 import DayCard from './DayCard';
 
 const DiaryPage = () => {

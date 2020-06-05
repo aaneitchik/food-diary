@@ -1,16 +1,17 @@
 .nav {
+  --nav-link-size: 48px;
+
   position: fixed;
   bottom: 0;
   left: 0;
-  height: 60px;
+  height: var(--nav-height);
   width: 100%;
   background-color: #fff;
 }
 
 .nav__list {
   display: flex;
-  /* TODO: Later will probably be center, for now one item only */
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   height: 100%;
   padding: 0 6px;
@@ -19,12 +20,19 @@
 }
 
 .nav__link {
-  display: block;
-  height: 48px;
+  display: flex;
+  align-items: center;
+  height: var(--nav-link-size);
   padding: 6px;
+  margin: 0 6px;
   color: var(--primary-color);
 }
 
 .nav__link:hover {
   color: var(--primary-color-hover);
+}
+
+.nav__link .icon {
+  width: 32px;
+  height: 32px;
 }

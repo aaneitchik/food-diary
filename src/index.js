@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { configure } from 'mobx';
 import { IconContext } from 'react-icons';
 
-import 'normalize.css';
+import 'mobx-react-lite/batchingForReactDom';
+
 import './index.css';
 
 import './firebase';

@@ -9,7 +9,6 @@
     "firebase": "^7.14.3",
     "mobx": "^5.15.4",
     "mobx-react-lite": "^2.0.6",
-    "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",

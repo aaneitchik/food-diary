@@ -1,10 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-  --primary-color: rgb(11, 106, 132);
-  --primary-color-hover: rgb(36, 145, 165);
+  --primary-color-rgb: 11, 106, 132;
+  --primary-color: rgb(var(--primary-color-rgb));
 
-  --secondary-color: rgb(250, 170, 143);
-  --secondary-color-hover: rgb(254, 234, 226);
+  --primary-color-hover-rgb: 36, 145, 165;
+  --primary-color-hover: rgb(var(--primary-color-hover-rgb));
 
+  --secondary-color-rgb: 250, 170, 143;
+  --secondary-color: rgb(var(--secondary-color-rgb));
+
+  --secondary-color-hover-rgb: 254, 234, 226;
+  --secondary-color-hover: rgb(var(--secondary-color-hover-rgb));
+
+  --nav-height: 60px;
+
+  height: 100vh;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -15,7 +28,13 @@ body {
 
 body,
 #root {
-  min-height: 100vh;
+  height: 100vh;
+}
+
+.home {
+  height: calc(100vh - var(--nav-height));
+  padding: 12px;
+  background-color: var(--secondary-color-hover);
 }
 
 h1,
@@ -25,9 +44,4 @@ h4,
 h5,
 h6 {
   margin: 0;
-}
-
-.icon {
-  width: 48px;
-  height: 48px;
 }

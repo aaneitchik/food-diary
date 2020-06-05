@@ -9,11 +9,13 @@ import DiaryPage from '../diary/DiaryPage';
 const HomePage = () => {
   return (
     <>
-      <Switch>
-        <Redirect exact path={ROUTE_HOME} to={ROUTE_DIARY} />
-        <Route path={ROUTE_DIARY} component={DiaryPage} />
-        <Route path={ROUTE_NEW_ENTRY} component={NewEntryPage} />
-      </Switch>
+      <div className="home">
+        <Switch>
+          <Redirect exact path={ROUTE_HOME} to={ROUTE_DIARY} />
+          <Route path={ROUTE_DIARY} component={DiaryPage} />
+          <Route path={ROUTE_NEW_ENTRY} component={NewEntryPage} />
+        </Switch>
+      </div>
       <Navigation />
     </>
   );
