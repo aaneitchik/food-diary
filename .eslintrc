@@ -1,0 +1,15 @@
+{
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "extends": ["react-app", "airbnb", "prettier", "prettier/react"],
+  "rules": {
+    "import/prefer-default-export": "off",
+    "jsx-a11y/label-has-for": "off",
+    "no-use-before-define": ["error", { "functions": false }],
+    "react/jsx-filename-extension": "off",
+    // TODO: Temporarily turn off, haven't yet decided whether to try Typescript
+    "react/prop-types": "off"
+  }
+}

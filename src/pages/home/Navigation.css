@@ -1,0 +1,30 @@
+.nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 60px;
+  width: 100%;
+  background-color: #fff;
+}
+
+.nav__list {
+  display: flex;
+  /* TODO: Later will probably be center, for now one item only */
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  padding: 0 6px;
+  list-style-type: none;
+  margin: 0;
+}
+
+.nav__link {
+  display: block;
+  height: 48px;
+  padding: 6px;
+  color: var(--primary-color);
+}
+
+.nav__link:hover {
+  color: var(--primary-color-hover);
+}

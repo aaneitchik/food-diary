@@ -1,0 +1,5 @@
+.diary {
+  min-height: 100vh;
+  padding: 12px;
+  background-color: var(--secondary-color-hover);
+}

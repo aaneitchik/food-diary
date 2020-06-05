@@ -1,0 +1,18 @@
+.day {
+  padding: 12px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+}
+
+.day__date {
+  font-size: 1.2rem;
+  margin-bottom: 0.5em;
+}
+
+.day__item-name {
+  font-size: 1rem;
+}
+
+.day__note {
+  color: gray;
+}

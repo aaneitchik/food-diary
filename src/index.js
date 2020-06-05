@@ -1,12 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { configure } from 'mobx';
+import { IconContext } from 'react-icons';
+
+import 'normalize.css';
 import './index.css';
+
+import './firebase';
+
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+configure({
+  enforceActions: 'always',
+});
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <IconContext.Provider value={{ className: 'icon' }}>
+      <App />
+    </IconContext.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
