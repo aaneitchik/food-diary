@@ -21,3 +21,20 @@
   align-items: center;
   gap: 4px;
 }
+
+.new-entry__date {
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  margin-bottom: 16px;
+  border: 2px solid rgba(var(--primary-color-hover-rgb), 0.35);
+}
+
+.new-entry__date-part {
+  flex: 1;
+}
+
+.new-entry__date-input {
+  min-width: 0;
+  width: 100%;
+}

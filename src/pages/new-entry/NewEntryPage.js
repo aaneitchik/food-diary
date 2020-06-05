@@ -5,10 +5,15 @@ import './NewEntryPage.css';
 
 import rootStoreContext from '../../root.store';
 import diaryApi from '../../modules/diary/diary.api';
+import { toLocaleDate } from '../../common/formatting.utils';
 
 const NewEntryPage = () => {
   const { diaryStore } = useContext(rootStoreContext);
   const [selectedEntryType, setSelectedEntryType] = useState(null);
+  const today = new Date();
+  const [day, setDay] = useState(today.getDay());
+  const [month, setMonth] = useState(today.getMonth() + 1);
+  const [year, setYear] = useState(today.getFullYear());
 
   useEffect(() => {
     let didCancel = false;
@@ -39,9 +44,73 @@ const NewEntryPage = () => {
     setSelectedEntryType(e.target.value);
   };
 
+  const handleDayChange = e => {
+    setDay(e.target.value);
+  };
+
+  const handleMonthChange = e => {
+    setMonth(e.target.value);
+  };
+
+  const handleYearChange = e => {
+    setYear(e.target.value);
+  };
+
+  const dateInSeconds = new Date(year, month - 1, day).getTime() / 1000;
+
   return (
     <div className="new-entry">
       <form>
+        <fieldset className="new-entry__date">
+          <legend>
+            Дата: {toLocaleDate(dateInSeconds)} {year}
+          </legend>
+          <div className="new-entry__date-part">
+            <label htmlFor="day" className="new-entry__date-label">
+              День
+              <input
+                id="day"
+                name="day"
+                type="number"
+                className="new-entry__date-input"
+                min={1}
+                max={31}
+                value={day}
+                onChange={handleDayChange}
+              />
+            </label>
+          </div>
+          <div className="new-entry__date-part">
+            <label htmlFor="month" className="new-entry__date-label">
+              Месяц
+              <input
+                id="month"
+                name="month"
+                type="number"
+                className="new-entry__date-input"
+                min={1}
+                max={12}
+                value={month}
+                onChange={handleMonthChange}
+              />
+            </label>
+          </div>
+          <div className="new-entry__date-part">
+            <label htmlFor="year" className="new-entry__date-label">
+              Год
+              <input
+                id="year"
+                name="year"
+                type="number"
+                className="new-entry__date-input"
+                min={0}
+                value={year}
+                onChange={handleYearChange}
+              />
+            </label>
+          </div>
+        </fieldset>
+
         <fieldset className="new-entry__types">
           <legend className="new-entry__types-legend">Вид записи</legend>
           {diaryStore.entryTypes.map(entryType => {
