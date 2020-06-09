@@ -26,7 +26,6 @@
   display: flex;
   width: 100%;
   gap: 8px;
-  margin-bottom: 16px;
   border: 2px solid rgba(var(--primary-color-hover-rgb), 0.35);
 }
 
@@ -37,4 +36,22 @@
 .new-entry__date-input {
   min-width: 0;
   width: 100%;
+}
+
+.new-entry__name {
+  display: block;
+}
+
+.new-entry__submit-btn {
+  height: 40px;
+  padding: 0 16px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+}
+
+.new-entry__submit-btn:hover,
+.new-entry__submit-btn:focus {
+  color: #fff;
+  background-color: var(--primary-color-hover);
 }

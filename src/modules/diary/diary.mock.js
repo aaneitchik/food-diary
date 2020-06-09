@@ -1,17 +1,11 @@
 export const diaryMock = [
   {
-    datetime: {
-      seconds: 1590958800,
-      nanoseconds: 0,
-    },
+    datetime: 1590958800,
     entries: [
       {
         id: '1',
         name: 'завтрак',
-        datetime: {
-          seconds: 1590958800,
-          nanoseconds: 0,
-        },
+        datetime: 1590958800,
         type: 'EATING',
         items: [
           {
@@ -24,10 +18,7 @@ export const diaryMock = [
       },
       {
         id: '2',
-        datetime: {
-          seconds: 1590958800,
-          nanoseconds: 0,
-        },
+        datetime: 1590958800,
         type: 'NOTE',
         text: 'Заметка к сегодняшней еде',
       },

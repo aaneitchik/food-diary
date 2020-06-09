@@ -6,6 +6,7 @@ import { IconContext } from 'react-icons';
 import 'mobx-react-lite/batchingForReactDom';
 
 import './index.css';
+import './utility.css';
 
 import './firebase';
 

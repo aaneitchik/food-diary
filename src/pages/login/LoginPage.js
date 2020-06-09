@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 import './LoginPage.css';
 
 import rootStoreContext from '../../root.store';
+import { ROUTE_HOME } from '../../routes';
 
 const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -33,7 +34,7 @@ const LoginPage = () => {
   };
 
   if (authStore.user.token) {
-    return <Redirect to={{ pathname: '/' }} />;
+    return <Redirect to={{ pathname: ROUTE_HOME }} />;
   }
 
   return (

@@ -9,18 +9,26 @@ import FoodEntry from './FoodEntry';
 const DayCard = ({ day }) => {
   return (
     <article className="day">
-      <h1 className="day__date">{toLocaleDate(day.datetime.seconds)}</h1>
-      {day.entries.map(entry => {
+      <h1 className="day__date">{toLocaleDate(day.datetime)}</h1>
+      {/* TODO: Actually index is not a good idea, but for now we don't have any editing. */}
+      {/* Replace with something like an id when necessary */}
+      {/* eslint-disable react/no-array-index-key */}
+      {day.entries.map((entry, index) => {
+        let entryToRender = null;
+
         if (entry.type === 'NOTE') {
-          return <NoteEntry key={entry.id} entry={entry} />;
+          entryToRender = <NoteEntry key={index} entry={entry} />;
+        } else if (entry.type === 'EATING') {
+          entryToRender = <FoodEntry key={index} entry={entry} />;
         }
 
-        if (entry.type === 'EATING') {
-          return <FoodEntry key={entry.id} entry={entry} />;
+        if (entryToRender) {
+          return <div className="--mb-1">{entryToRender}</div>;
         }
 
         return null;
       })}
+      {/* eslint-enable react/no-array-index-key */}
     </article>
   );
 };

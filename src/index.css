@@ -9,11 +9,20 @@ body {
   --primary-color-hover-rgb: 36, 145, 165;
   --primary-color-hover: rgb(var(--primary-color-hover-rgb));
 
+  --primary-color-accent-rgb: 9, 68, 82;
+  --primary-color-accent: rgb(var(--primary-color-accent-rgb));
+
   --secondary-color-rgb: 250, 170, 143;
   --secondary-color: rgb(var(--secondary-color-rgb));
 
   --secondary-color-hover-rgb: 254, 234, 226;
   --secondary-color-hover: rgb(var(--secondary-color-hover-rgb));
+
+  --negative-color-rgb: 200, 78, 47;
+  --negative-color: rgb(var(--negative-color-rgb));
+
+  --negative-color-hover-rgb: 218, 124, 101;
+  --negative-color-hover: var(--negative-color-hover-rgb);
 
   --nav-height: 60px;
 

@@ -1,0 +1,37 @@
+.food-items {
+  border: 2px solid rgba(var(--primary-color-hover-rgb), 0.35);
+}
+
+.food-items__item {
+  display: flex;
+}
+
+.food-items__item-name-input {
+  flex: 1;
+}
+
+.food-items__item-btn {
+  appearance: none;
+  color: var(--primary-color);
+  background-color: transparent;
+  border: none;
+}
+
+.food-items__item-btn:hover,
+.food-items__item-btn:hover {
+  color: var(--primary-color-hover);
+}
+
+.food-items__item-btn .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.food-items__remove-btn {
+  color: var(--negative-color);
+}
+
+.food-items__remove-btn:hover,
+.food-items__remove-btn:focus {
+  color: var(--negative-color-hover);
+}

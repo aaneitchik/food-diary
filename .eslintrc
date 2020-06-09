@@ -9,6 +9,7 @@
     "jsx-a11y/label-has-for": "off",
     "no-underscore-dangle": "off",
     "no-use-before-define": ["error", { "functions": false }],
+    "operator-assignment": ["error", "never"],
     "react/jsx-filename-extension": "off",
     // TODO: Temporarily turn off, haven't yet decided whether to try Typescript
     "react/prop-types": "off"
