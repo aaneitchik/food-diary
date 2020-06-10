@@ -17,13 +17,17 @@ const DayCard = ({ day }) => {
         let entryToRender = null;
 
         if (entry.type === 'NOTE') {
-          entryToRender = <NoteEntry key={index} entry={entry} />;
+          entryToRender = <NoteEntry entry={entry} />;
         } else if (entry.type === 'EATING') {
-          entryToRender = <FoodEntry key={index} entry={entry} />;
+          entryToRender = <FoodEntry entry={entry} />;
         }
 
         if (entryToRender) {
-          return <div className="--mb-1">{entryToRender}</div>;
+          return (
+            <div className="--mb-1" key={index}>
+              {entryToRender}
+            </div>
+          );
         }
 
         return null;
