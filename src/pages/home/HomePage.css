@@ -1,0 +1,17 @@
+.home {
+  /* We nee a fixed width, otherwise we can't guarantee the card being centered when scrollbar appears/disappears */
+  --home-content-width: 90vw;
+
+  height: calc(100vh - var(--nav-height));
+  padding: 12px;
+  overflow: auto;
+  background-color: var(--secondary-color-hover);
+}
+
+/* This is a hack to ensure that when the scrollbar appears, content is not moved
+   More about that hack here: https://aykevl.nl/2014/09/fix-jumping-scrollbar */
+.home__scrollbar-wrapper {
+  /* 24px is padding size multiplied by 2 */
+  margin-left: calc(100vw - 24px - 100%);
+  margin-right: 0;
+}

@@ -40,12 +40,6 @@ body,
   height: 100vh;
 }
 
-.home {
-  height: calc(100vh - var(--nav-height));
-  padding: 12px;
-  background-color: var(--secondary-color-hover);
-}
-
 h1,
 h2,
 h3,

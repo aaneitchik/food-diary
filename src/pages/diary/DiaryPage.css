@@ -1,4 +1,6 @@
 .diary {
   min-height: 100%;
+  width: var(--home-content-width);
+  margin: 0 auto;
   background-color: var(--secondary-color-hover);
 }

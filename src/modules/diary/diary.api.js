@@ -14,7 +14,10 @@ const diaryApi = {
 export default diaryApi;
 
 async function getAll() {
-  const querySnapshot = await entriesRef.get();
+  const querySnapshot = await entriesRef
+    .orderBy('datetime', 'desc')
+    .limit(14)
+    .get();
 
   return querySnapshot.docs.map(doc => doc.data());
 }
