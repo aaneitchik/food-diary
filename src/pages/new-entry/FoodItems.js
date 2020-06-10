@@ -61,7 +61,14 @@ const createNewFoodItem = () => {
   return { id: idIncrement, name: '' };
 };
 
-const initialFoodItems = [createNewFoodItem()];
+// Empty fields do not count anyway, so better to create some items beforehand
+const initialFoodItems = [
+  createNewFoodItem(),
+  createNewFoodItem(),
+  createNewFoodItem(),
+  createNewFoodItem(),
+  createNewFoodItem(),
+];
 
 const ADD_ITEM_ACTION = 'ADD_ITEM_ACTION';
 const EDIT_ITEM_ACTION = 'EDIT_ITEM_ACTION';
