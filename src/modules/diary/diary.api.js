@@ -16,6 +16,7 @@ export default diaryApi;
 async function getAll() {
   const querySnapshot = await entriesRef
     .orderBy('datetime', 'desc')
+    // TODO: Limit is temporary, will need proper loading by page
     .limit(14)
     .get();
 

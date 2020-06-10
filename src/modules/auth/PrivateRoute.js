@@ -3,6 +3,7 @@ import { Route, Redirect, withRouter } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
 import rootStore from '../../root.store';
+import { ROUTE_LOGIN } from '../../routes';
 
 // No need to specify proptypes, they're from react-router
 /* eslint-disable react/jsx-props-no-spreading */
@@ -17,7 +18,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
           <Component {...props} />
         ) : (
           <Redirect
-            to={{ pathname: '/login', state: { from: props.location } }}
+            to={{ pathname: ROUTE_LOGIN, state: { from: props.location } }}
           />
         )
       }

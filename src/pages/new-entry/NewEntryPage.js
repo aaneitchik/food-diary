@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
+import { Redirect } from 'react-router-dom';
 
 import './NewEntryPage.css';
 
@@ -7,7 +8,9 @@ import rootStoreContext from '../../root.store';
 import diaryApi from '../../modules/diary/diary.api';
 import { toLocaleDate } from '../../common/formatting.utils';
 import FoodItems from './FoodItems';
+import { ROUTE_DIARY } from '../../routes';
 
+// TODO: Same here, try out state machines to handle loading/submitting/errors etc.
 const NewEntryPage = () => {
   const { diaryStore } = useContext(rootStoreContext);
   const [selectedEntryType, setSelectedEntryType] = useState(null);
@@ -16,6 +19,7 @@ const NewEntryPage = () => {
   const [month, setMonth] = useState(today.getMonth() + 1);
   const [year, setYear] = useState(today.getFullYear());
   const [eatingName, setEatingName] = useState('');
+  const [didSubmit, setDidSubmit] = useState(false);
 
   useEffect(() => {
     let didCancel = false;
@@ -90,12 +94,16 @@ const NewEntryPage = () => {
 
     try {
       await diaryApi.addEntry(entryToCreate);
-      // TODO: Handle success case, redirect to home maybe?
+      setDidSubmit(true);
     } catch (error) {
       // TODO: Handle error
       console.error(error);
     }
   };
+
+  if (didSubmit) {
+    return <Redirect to={{ pathname: ROUTE_DIARY }} />;
+  }
 
   const dateInSeconds = new Date(year, month - 1, day).getTime() / 1000;
 
