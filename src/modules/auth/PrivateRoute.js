@@ -14,7 +14,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={props =>
-        authStore.user.token ? (
+        authStore.user.isLoggedIn ? (
           <Component {...props} />
         ) : (
           <Redirect

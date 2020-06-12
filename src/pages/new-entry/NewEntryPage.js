@@ -195,7 +195,7 @@ const NewEntryPage = () => {
           />
         </label>
 
-        <button type="submit" className="new-entry__submit-btn --mt-6">
+        <button type="submit" className="primary-button --mt-6">
           Добавить запись
         </button>
       </form>

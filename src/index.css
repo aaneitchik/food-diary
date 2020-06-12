@@ -48,3 +48,17 @@ h5,
 h6 {
   margin: 0;
 }
+
+.primary-button {
+  height: 40px;
+  padding: 0 16px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+}
+
+.primary-button:hover,
+.primary-button:focus {
+  color: #fff;
+  background-color: var(--primary-color-hover);
+}

@@ -1,0 +1,13 @@
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--secondary-color-hover);
+  min-height: 100vh;
+}
+
+.login-page__header {
+  font-size: 1.5rem;
+  color: var(--primary-color-accent);
+}
