@@ -7,6 +7,7 @@ import './LoginPage.css';
 
 import rootStoreContext from '../../root.store';
 import { ROUTE_HOME } from '../../routes';
+import { AUTH_STATUSES } from '../../modules/auth/auth.store';
 
 const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -17,9 +18,7 @@ const LoginPage = () => {
     try {
       await firebase.auth().signInWithPopup(provider);
 
-      authStore.setUser({
-        isLoggedIn: true,
-      });
+      authStore.setAuthStatus(AUTH_STATUSES.LOGGED_IN);
     } catch (e) {
       // TODO: Handle authentication error
       // eslint-disable-next-line no-console
@@ -27,7 +26,12 @@ const LoginPage = () => {
     }
   };
 
-  if (authStore.user.isLoggedIn) {
+  if (authStore.authStatus === AUTH_STATUSES.PENDING) {
+    // TODO: Need some loading indicator
+    return null;
+  }
+
+  if (authStore.authStatus === AUTH_STATUSES.LOGGED_IN) {
     return <Redirect to={{ pathname: ROUTE_HOME }} />;
   }
 

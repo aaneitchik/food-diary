@@ -2,8 +2,11 @@ import firebase from 'firebase/app';
 
 import { db } from '../../firebase';
 
-// Comment out for styling and figuring out structure
-const entriesRef = db.collection('entries');
+const getUserDaysRef = () => {
+  const userId = firebase.auth().currentUser.uid;
+
+  return db.collection('days').doc(userId).collection('days');
+};
 
 const diaryApi = {
   getAll,
@@ -14,7 +17,7 @@ const diaryApi = {
 export default diaryApi;
 
 async function getAll() {
-  const querySnapshot = await entriesRef
+  const querySnapshot = await getUserDaysRef()
     .orderBy('datetime', 'desc')
     // TODO: Limit is temporary, will need proper loading by page
     .limit(14)
@@ -45,11 +48,13 @@ function addEntry(entry) {
   const entryId = entry.datetime.toString();
 
   // Create an entry if it doesn't exist, update otherwise
-  return entriesRef.doc(entryId).set(
-    {
-      datetime: entry.datetime,
-      entries: firebase.firestore.FieldValue.arrayUnion(entry),
-    },
-    { merge: true }
-  );
+  return getUserDaysRef()
+    .doc(entryId)
+    .set(
+      {
+        datetime: entry.datetime,
+        entries: firebase.firestore.FieldValue.arrayUnion(entry),
+      },
+      { merge: true }
+    );
 }

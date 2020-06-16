@@ -7,6 +7,7 @@ import { ROUTE_DIARY, ROUTE_LOGIN, ROUTE_NEW_ENTRY } from '../../routes';
 
 import './Navigation.css';
 import rootStoreContext from '../../root.store';
+import { AUTH_STATUSES } from '../../modules/auth/auth.store';
 
 const Navigation = () => {
   const { authStore } = useContext(rootStoreContext);
@@ -14,9 +15,7 @@ const Navigation = () => {
   const logout = async () => {
     try {
       await firebase.auth().signOut();
-      authStore.setUser({
-        isLoggedIn: false,
-      });
+      authStore.setAuthStatus(AUTH_STATUSES.LOGGED_OUT);
       window.location.reload();
     } catch (e) {
       // TODO: Handle logout error
