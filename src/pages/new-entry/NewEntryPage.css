@@ -40,6 +40,11 @@
   width: 100%;
 }
 
-.new-entry__name {
+.new-entry__name,
+.new-entry__note-text {
   display: block;
+}
+
+.new-entry__note-text-textarea {
+  width: 100%;
 }

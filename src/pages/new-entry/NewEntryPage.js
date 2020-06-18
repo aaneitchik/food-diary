@@ -9,6 +9,7 @@ import diaryApi from '../../modules/diary/diary.api';
 import { toLocaleDate } from '../../common/formatting.utils';
 import FoodItems from './FoodItems';
 import { ROUTE_DIARY } from '../../routes';
+import { ENTRY_TYPES } from '../../common/types';
 
 // TODO: Same here, try out state machines to handle loading/submitting/errors etc.
 const NewEntryPage = () => {
@@ -19,6 +20,7 @@ const NewEntryPage = () => {
   const [month, setMonth] = useState(today.getMonth() + 1);
   const [year, setYear] = useState(today.getFullYear());
   const [eatingName, setEatingName] = useState('');
+  const [noteText, setNoteText] = useState('');
   const [didSubmit, setDidSubmit] = useState(false);
 
   useEffect(() => {
@@ -66,6 +68,10 @@ const NewEntryPage = () => {
     setEatingName(e.target.value);
   };
 
+  const handleNoteTextChange = e => {
+    setNoteText(e.target.value);
+  };
+
   const handleSubmit = async e => {
     e.preventDefault();
     const form = document.getElementById('new-entry-form');
@@ -80,17 +86,19 @@ const NewEntryPage = () => {
         +formValues.day
       ).getTime() / 1000;
 
-    const foodItems = Object.keys(formValues)
-      .filter(key => key.startsWith('food-item-') && formValues[key]?.length)
-      .map(key => ({ name: formValues[key] }));
-
-    // TODO: For now handling only EATING type
     const entryToCreate = {
       datetime: entryDateInSeconds,
-      type: formValues['entry-type'],
-      name: formValues['eating-name'],
-      items: foodItems,
+      type: selectedEntryType,
     };
+
+    if (selectedEntryType === ENTRY_TYPES.EATING) {
+      entryToCreate.items = Object.keys(formValues)
+        .filter(key => key.startsWith('food-item-') && formValues[key]?.length)
+        .map(key => ({ name: formValues[key] }));
+      entryToCreate.name = eatingName;
+    } else if (selectedEntryType === ENTRY_TYPES.NOTE) {
+      entryToCreate.text = noteText;
+    }
 
     try {
       await diaryApi.addEntry(entryToCreate);
@@ -182,18 +190,35 @@ const NewEntryPage = () => {
           })}
         </fieldset>
 
-        <FoodItems />
+        {selectedEntryType === ENTRY_TYPES.EATING && (
+          <>
+            <FoodItems />
+            <label htmlFor="eating-name" className="new-entry__name --mt-4">
+              <div className="--mb-1">Название приема пищи</div>
+              <input
+                id="eating-name"
+                name="eating-name"
+                type="text"
+                value={eatingName}
+                onChange={handleEatingNameChange}
+              />
+            </label>
+          </>
+        )}
 
-        <label htmlFor="eating-name" className="new-entry__name --mt-4">
-          <div>Название приема пищи</div>
-          <input
-            id="eating-name"
-            name="eating-name"
-            type="text"
-            value={eatingName}
-            onChange={handleEatingNameChange}
-          />
-        </label>
+        {selectedEntryType === ENTRY_TYPES.NOTE && (
+          <label htmlFor="note-text" className="new-entry__note-text">
+            <div className="--mb-1">Текст пометки</div>
+            <textarea
+              id="note-text"
+              name="note-text"
+              rows="5"
+              className="new-entry__note-text-textarea"
+              value={noteText}
+              onChange={handleNoteTextChange}
+            />
+          </label>
+        )}
 
         <button type="submit" className="primary-button --mt-6">
           Добавить запись
