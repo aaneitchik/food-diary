@@ -34,7 +34,7 @@ const FoodItem = ({ item, index, addNewItem, editItem, removeItem }) => {
         type="text"
         name={getFoodItemInputNamePrefix(index)}
         className="food-items__item-name-input"
-        aria-label={`Продукт/блюдо #${index}`}
+        aria-label={`Продукт/блюдо #${index + 1}`}
         value={item.name}
         onChange={editItemName}
         onKeyPress={handleKeyPress}
@@ -42,6 +42,7 @@ const FoodItem = ({ item, index, addNewItem, editItem, removeItem }) => {
       <button
         type="button"
         className="food-items__item-btn"
+        aria-label={`Добавить продукт/блюдо #${index + 2}`}
         onClick={addNewFoodItem}
       >
         <FiPlus />
@@ -49,6 +50,7 @@ const FoodItem = ({ item, index, addNewItem, editItem, removeItem }) => {
       <button
         type="button"
         className="food-items__item-btn food-items__remove-btn"
+        aria-label={`Удалить продукт/блюдо #${index + 1}`}
         onClick={removeFoodItem}
       >
         <FiX />
