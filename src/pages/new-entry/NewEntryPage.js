@@ -10,6 +10,7 @@ import { toLocaleDate } from '../../common/formatting.utils';
 import FoodItems from './FoodItems';
 import { ROUTE_DIARY } from '../../routes';
 import { ENTRY_TYPES } from '../../common/types';
+import { FOOD_ITEM_INPUT_NAME_PREFIX } from './NewEntryPage.utils';
 
 // TODO: Same here, try out state machines to handle loading/submitting/errors etc.
 const NewEntryPage = () => {
@@ -78,7 +79,6 @@ const NewEntryPage = () => {
     const formData = new FormData(form);
     const formValues = Object.fromEntries(formData.entries());
 
-    // TODO: Maybe need constants for form input names?
     const entryDateInSeconds =
       new Date(
         +formValues.year,
@@ -93,7 +93,11 @@ const NewEntryPage = () => {
 
     if (selectedEntryType === ENTRY_TYPES.EATING) {
       entryToCreate.items = Object.keys(formValues)
-        .filter(key => key.startsWith('food-item-') && formValues[key]?.length)
+        .filter(
+          key =>
+            key.startsWith(FOOD_ITEM_INPUT_NAME_PREFIX) &&
+            formValues[key]?.length
+        )
         .map(key => ({ name: formValues[key] }));
       entryToCreate.name = eatingName;
     } else if (selectedEntryType === ENTRY_TYPES.NOTE) {

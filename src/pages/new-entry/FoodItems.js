@@ -3,6 +3,11 @@ import { FiPlus, FiX } from 'react-icons/fi';
 
 import './FoodItems.css';
 
+import {
+  getFoodItemInputNamePrefix,
+  NUMBER_OF_FOOD_ITEMS_TO_CREATE_BY_DEFAULT,
+} from './NewEntryPage.utils';
+
 const FoodItem = ({ item, index, addNewItem, editItem, removeItem }) => {
   const addNewFoodItem = () => {
     addNewItem(index + 1);
@@ -27,7 +32,7 @@ const FoodItem = ({ item, index, addNewItem, editItem, removeItem }) => {
     <div className="food-items__item --mb-2">
       <input
         type="text"
-        name={`food-item-${index}`}
+        name={getFoodItemInputNamePrefix(index)}
         className="food-items__item-name-input"
         aria-label={`Продукт/блюдо #${index}`}
         value={item.name}
@@ -63,12 +68,8 @@ const createNewFoodItem = () => {
 
 // Empty fields do not count anyway, so better to create some items beforehand
 const initialFoodItems = [
-  createNewFoodItem(),
-  createNewFoodItem(),
-  createNewFoodItem(),
-  createNewFoodItem(),
-  createNewFoodItem(),
-];
+  ...Array(NUMBER_OF_FOOD_ITEMS_TO_CREATE_BY_DEFAULT),
+].map(() => createNewFoodItem());
 
 const ADD_ITEM_ACTION = 'ADD_ITEM_ACTION';
 const EDIT_ITEM_ACTION = 'EDIT_ITEM_ACTION';
