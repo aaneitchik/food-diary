@@ -22,7 +22,8 @@
     "deploy:local": "firebase serve --only hosting",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src/**/*.js"
+    "lint": "eslint src/**/*.js",
+    "analyze": "node scripts/analyze"
   },
   "husky": {
     "hooks": {
@@ -60,6 +61,8 @@
     "eslint-plugin-react-hooks": "^2.5.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.2",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "progress-bar-webpack-plugin": "^2.1.0",
+    "webpack-bundle-analyzer": "^3.8.0"
   }
 }
