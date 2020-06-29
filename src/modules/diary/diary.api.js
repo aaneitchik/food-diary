@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 
 import { db } from '../../firebase';
+import { ENTRY_TYPES } from '../../common/types';
 
 const getUserDaysRef = () => {
   const userId = firebase.auth().currentUser.uid;
@@ -26,20 +27,19 @@ async function getAll() {
   return querySnapshot.docs.map(doc => doc.data());
 }
 
+// Would be better to get this from the server, but for now here is ok
 function getEntryTypes() {
   return new Promise(resolve =>
-    setTimeout(() => {
-      resolve([
-        {
-          _id: 'EATING',
-          label: 'еда',
-        },
-        {
-          _id: 'NOTE',
-          label: 'пометка',
-        },
-      ]);
-    }, 500)
+    resolve([
+      {
+        _id: ENTRY_TYPES.EATING,
+        label: 'еда',
+      },
+      {
+        _id: ENTRY_TYPES.NOTE,
+        label: 'пометка',
+      },
+    ])
   );
 }
 

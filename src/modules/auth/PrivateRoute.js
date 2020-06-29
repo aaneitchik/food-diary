@@ -5,6 +5,7 @@ import { observer } from 'mobx-react-lite';
 import rootStore from '../../root.store';
 import { ROUTE_LOGIN } from '../../routes';
 import { AUTH_STATUSES } from './auth.store';
+import FullScreenSpinner from '../../common/components/FullScreenSpinner';
 
 // No need to specify proptypes, they're from react-router
 /* eslint-disable react/jsx-props-no-spreading */
@@ -20,8 +21,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       {...rest}
       render={props => {
         if (authStatus === AUTH_STATUSES.PENDING) {
-          // TODO: Add some loading indicator while authenticating
-          return null;
+          return <FullScreenSpinner />;
         }
 
         if (authStatus === AUTH_STATUSES.LOGGED_IN) {

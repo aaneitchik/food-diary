@@ -48,3 +48,9 @@
 .new-entry__note-text-textarea {
   width: 100%;
 }
+
+.new-entry__submit-btn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
