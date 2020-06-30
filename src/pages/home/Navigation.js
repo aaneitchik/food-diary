@@ -27,12 +27,20 @@ const Navigation = () => {
     <nav className="nav">
       <ul className="nav__list">
         <li className="nav__item">
-          <Link to={{ pathname: ROUTE_DIARY }} className="nav__link">
+          <Link
+            to={{ pathname: ROUTE_DIARY }}
+            className="nav__link"
+            aria-label="Дневник"
+          >
             <FiHome />
           </Link>
         </li>
         <li className="nav__item">
-          <Link to={{ pathname: ROUTE_NEW_ENTRY }} className="nav__link">
+          <Link
+            to={{ pathname: ROUTE_NEW_ENTRY }}
+            className="nav__link"
+            aria-label="Новая запись"
+          >
             <FiPlus />
           </Link>
         </li>
@@ -41,6 +49,7 @@ const Navigation = () => {
             to={{ pathname: ROUTE_LOGIN }}
             onClick={logout}
             className="nav__link"
+            aria-label="Выйти из приложения"
           >
             <FiLogOut />
           </Link>

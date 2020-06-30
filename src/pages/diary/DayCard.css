@@ -15,5 +15,7 @@
 }
 
 .day__note {
-  color: #757575;
+  margin: 6px 0;
+  padding: 6px;
+  background-color: rgba(89, 74, 78, 0.15);
 }
