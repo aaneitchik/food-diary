@@ -9,10 +9,6 @@ import {
 } from './NewEntryPage.utils';
 
 const FoodItem = ({ item, index, addNewItem, editItem, removeItem }) => {
-  const addNewFoodItem = () => {
-    addNewItem(index + 1);
-  };
-
   const editItemName = e => {
     editItem(index, { name: e.target.value });
   };
@@ -24,7 +20,7 @@ const FoodItem = ({ item, index, addNewItem, editItem, removeItem }) => {
   const handleKeyPress = e => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      addNewFoodItem();
+      addNewItem();
     }
   };
 
@@ -39,14 +35,6 @@ const FoodItem = ({ item, index, addNewItem, editItem, removeItem }) => {
         onChange={editItemName}
         onKeyPress={handleKeyPress}
       />
-      <button
-        type="button"
-        className="food-items__item-btn"
-        aria-label={`Добавить продукт/блюдо #${index + 2}`}
-        onClick={addNewFoodItem}
-      >
-        <FiPlus />
-      </button>
       <button
         type="button"
         className="food-items__item-btn food-items__remove-btn"
@@ -80,13 +68,7 @@ const REMOVE_ITEM_ACTION = 'REMOVE_ITEM_ACTION';
 const foodItemsReducer = (state, action) => {
   switch (action.type) {
     case ADD_ITEM_ACTION: {
-      const { index } = action.payload;
-
-      return [
-        ...state.slice(0, index),
-        createNewFoodItem(),
-        ...state.slice(index),
-      ];
+      return [...state, createNewFoodItem()];
     }
     case EDIT_ITEM_ACTION: {
       const { index, newData } = action.payload;
@@ -114,8 +96,8 @@ const foodItemsReducer = (state, action) => {
 const FoodItems = () => {
   const [foodItems, dispatch] = useReducer(foodItemsReducer, initialFoodItems);
 
-  const addNewItem = index => {
-    dispatch({ type: ADD_ITEM_ACTION, payload: { index } });
+  const addNewItem = () => {
+    dispatch({ type: ADD_ITEM_ACTION });
   };
 
   const editItem = (index, { name }) => {
@@ -141,6 +123,14 @@ const FoodItems = () => {
           />
         );
       })}
+      <button
+        type="button"
+        className="food-items__item-btn --ml-auto"
+        aria-label="Добавить продукт/блюдо"
+        onClick={addNewItem}
+      >
+        <FiPlus />
+      </button>
     </fieldset>
   );
 };

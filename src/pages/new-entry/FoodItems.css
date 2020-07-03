@@ -11,6 +11,7 @@
 }
 
 .food-items__item-btn {
+  display: block;
   appearance: none;
   color: var(--primary-color);
   background-color: transparent;

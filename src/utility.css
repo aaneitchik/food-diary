@@ -17,3 +17,7 @@
 .--mt-6 {
   margin-top: 24px;
 }
+
+.--ml-auto {
+  margin-left: auto;
+}

@@ -13,9 +13,7 @@ const getAllInputs = getAllByLabelText => {
   return getAllByLabelText(/Продукт\/блюдо #\d+/);
 };
 
-const getAddButtonByIndex = getByLabelText => index => {
-  return getByLabelText(`Добавить продукт/блюдо #${index + 2}`);
-};
+const getAddButton = getByLabelText => getByLabelText('Добавить продукт/блюдо');
 
 const getRemoveButtonByIndex = getByLabelText => index => {
   return getByLabelText(`Удалить продукт/блюдо #${index + 1}`);
@@ -29,14 +27,10 @@ test('there are some empty inputs created by default', () => {
   );
 });
 
-test('new input can be created at an index by clicking +', () => {
+test('new input can be created by clicking +', () => {
   const { getByLabelText, getAllByLabelText } = render(<FoodItems />);
 
-  userEvent.click(
-    getAddButtonByIndex(getByLabelText)(
-      NUMBER_OF_FOOD_ITEMS_TO_CREATE_BY_DEFAULT - 1
-    )
-  );
+  userEvent.click(getAddButton(getByLabelText));
 
   expect(getAllInputs(getAllByLabelText)).toHaveLength(
     NUMBER_OF_FOOD_ITEMS_TO_CREATE_BY_DEFAULT + 1
