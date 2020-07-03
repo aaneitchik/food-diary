@@ -1,6 +1,5 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import 'firebase/firestore';
 
 firebase.initializeApp({
   apiKey: 'AIzaSyD3Fms1XOK-1E_GH24Fm68mdapRT1cHQx4',
@@ -12,4 +11,16 @@ firebase.initializeApp({
   appId: '1:806404219978:web:e465ecae07b419fff4b2b3',
 });
 
-export const db = firebase.firestore();
+let dbLoadResolver;
+const dbLoadPromise = new Promise(resolve => {
+  dbLoadResolver = resolve;
+});
+
+// Do not wait for firestore to load to render the app, but start loading it cause we'll certainly need it
+(async () => {
+  await import('firebase/firestore');
+  const db = firebase.firestore();
+  dbLoadResolver(db);
+})();
+
+export const getDb = () => dbLoadPromise;
