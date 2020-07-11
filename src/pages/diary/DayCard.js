@@ -5,26 +5,24 @@ import './DayCard.css';
 import { toLocaleDate } from '../../common/formatting.utils';
 import NoteEntry from './NoteEntry';
 import FoodEntry from './FoodEntry';
+import { ENTRY_TYPES } from '../../common/types';
 
 const DayCard = ({ day }) => {
   return (
     <article className="day">
       <h1 className="day__date">{toLocaleDate(day.datetime)}</h1>
-      {/* TODO: Actually index is not a good idea, but for now we don't have any editing. */}
-      {/* Replace with something like an id when necessary */}
-      {/* eslint-disable react/no-array-index-key */}
-      {day.entries.map((entry, index) => {
+      {day.entries.map(entry => {
         let entryToRender = null;
 
-        if (entry.type === 'NOTE') {
+        if (entry.type === ENTRY_TYPES.NOTE) {
           entryToRender = <NoteEntry entry={entry} />;
-        } else if (entry.type === 'EATING') {
+        } else if (entry.type === ENTRY_TYPES.EATING) {
           entryToRender = <FoodEntry entry={entry} />;
         }
 
         if (entryToRender) {
           return (
-            <div className="--mb-1" key={index}>
+            <div className="--mb-1" key={entry.id}>
               {entryToRender}
             </div>
           );
@@ -32,7 +30,6 @@ const DayCard = ({ day }) => {
 
         return null;
       })}
-      {/* eslint-enable react/no-array-index-key */}
     </article>
   );
 };
