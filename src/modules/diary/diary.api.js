@@ -81,5 +81,15 @@ function getEntryTypes() {
 async function addEntry(entry) {
   const userEntriesRef = await getUserEntriesRef();
 
-  return userEntriesRef.doc().set(entry);
+  // Increment entry order based on existing entries, it's not like there's a lot of them for one day
+  // If this will not be fast enough, maybe pass current day from the DiaryPage to NewEntryPage
+  const existingDayEntriesSnapshot = await userEntriesRef
+    .where('datetime', '==', entry.datetime)
+    .get();
+  const existingEntriesOrders = existingDayEntriesSnapshot.docs.map(
+    doc => doc.data().order
+  );
+  const order = Math.max(...existingEntriesOrders, 0) + 1;
+
+  return userEntriesRef.doc().set({ ...entry, order });
 }
