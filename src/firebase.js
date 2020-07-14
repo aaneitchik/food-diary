@@ -2,7 +2,12 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 
 firebase.initializeApp({
-  apiKey: 'AIzaSyD3Fms1XOK-1E_GH24Fm68mdapRT1cHQx4',
+  // In Firebase, production key for a web app is always exposed, so no point in hiding it from the source code.
+  // It is secured by setting up according restrictions, and for local development there is a separate API key
+  apiKey:
+    process.env.NODE_ENV === 'production'
+      ? 'AIzaSyD3Fms1XOK-1E_GH24Fm68mdapRT1cHQx4'
+      : process.env.REACT_APP_API_KEY,
   authDomain: 'food-diary-3bd57.firebaseapp.com',
   databaseURL: 'https://food-diary-3bd57.firebaseio.com',
   projectId: 'food-diary-3bd57',
